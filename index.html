@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Shopping Centre — বিশ্বস্ত অনলাইন ফ্যাশন শপ</title>
+<meta name="description" content="Smart Shopping Centre — ঘড়ি, টি-শার্ট, শার্ট, প্যান্ট, জুতা ও ব্যাগের অনলাইন কালেকশন।">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a href="#products" class="skip-link">মূল কনটেন্টে যান</a>
+
+<!-- ===================== হেডার ===================== -->
+<header class="site-header">
+  <div class="container header-bar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="Smart Shopping Centre লোগো">
+      <span class="brand-name">Smart Shopping Centre</span>
+    </div>
+
+    <nav class="main-nav" aria-label="প্রধান মেনু">
+      <a class="nav-link" href="#hero">হোম</a>
+      <div class="products-menu">
+        <button aria-haspopup="true">প্রোডাক্ট ▾</button>
+        <div class="dropdown">
+          <button data-category="সব">সব প্রোডাক্ট</button>
+          <button data-category="ঘড়ি">ঘড়ি</button>
+          <button data-category="টি-শার্ট">টি-শার্ট</button>
+          <button data-category="শার্ট">শার্ট</button>
+          <button data-category="প্যান্ট">প্যান্ট</button>
+          <button data-category="জুতা">জুতা</button>
+          <button data-category="ব্যাগ">ব্যাগ</button>
+        </div>
+      </div>
+      <a class="nav-link" href="#footer">যোগাযোগ</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B5246" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="searchInput" type="search" placeholder="প্রোডাক্ট খুঁজুন…" aria-label="প্রোডাক্ট সার্চ">
+      </div>
+      <button class="icon-btn" data-open-cart aria-label="শপিং কার্ট খুলুন">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1.3" fill="#fff"/><circle cx="18" cy="21" r="1.3" fill="#fff"/><path d="M2 3h2l2.6 12.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== হিরো ===================== -->
+<section class="hero" id="hero">
+  <img src="assets/hero-illustration.svg" alt="একটি ছেলে দাঁড়িয়ে আছে, পাশে হাতঘড়ি, টি-শার্ট ও ঝুলন্ত শার্ট">
+  <div class="hero-overlay">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">Smart Shopping Centre — এস্টাব্লিশড অন ট্রাস্ট</span>
+      <h1 class="hero-tagline">"সততাই ব্যবসার আসল মূলধন, স্বপ্ন যেখানে আবদ্ধ বুদ্ধি যেখানে আড়ষ্ট"</h1>
+      <a href="#products" class="hero-cta">এখনই কেনাকাটা করুন →</a>
+    </div>
+  </div>
+</section>
+
+<main class="container" id="main">
+
+  <!-- ===================== ক্যাটাগরি ফিল্টার ===================== -->
+  <div class="category-strip" role="group" aria-label="ক্যাটাগরি ফিল্টার">
+    <button class="chip" data-category="সব" aria-pressed="true">সব</button>
+    <button class="chip" data-category="ঘড়ি" aria-pressed="false">ঘড়ি</button>
+    <button class="chip" data-category="টি-শার্ট" aria-pressed="false">টি-শার্ট</button>
+    <button class="chip" data-category="শার্ট" aria-pressed="false">শার্ট</button>
+    <button class="chip" data-category="প্যান্ট" aria-pressed="false">প্যান্ট</button>
+    <button class="chip" data-category="জুতা" aria-pressed="false">জুতা</button>
+    <button class="chip" data-category="ব্যাগ" aria-pressed="false">ব্যাগ</button>
+  </div>
+
+  <!-- ===================== প্রোডাক্ট গ্রিড ===================== -->
+  <div class="section-title" id="products">
+    <h2>সব প্রোডাক্ট</h2>
+    <span id="resultCount"></span>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+  <p class="empty-state" id="emptyState" hidden>কোনো প্রোডাক্ট পাওয়া যায়নি — অন্য কিছু খুঁজে দেখুন।</p>
+</main>
+
+<!-- ===================== কার্ট ড্রয়ার ===================== -->
+<div class="overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="শপিং কার্ট">
+  <div class="cart-head">
+    <h2>আপনার কার্ট</h2>
+    <button class="close-btn" data-close-cart aria-label="কার্ট বন্ধ করুন">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-summary">
+    <div class="summary-row"><span>সাবটোটাল</span><span id="subtotal">৳0</span></div>
+    <div class="summary-row"><span>ডেলিভারি চার্জ</span><span id="shipping">—</span></div>
+    <div class="summary-row total"><span>সর্বমোট</span><span id="total">৳0</span></div>
+    <button class="checkout-btn" id="checkoutBtn" disabled>চেকআউট করুন</button>
+  </div>
+</aside>
+
+<!-- ===================== চেকআউট মোডাল ===================== -->
+<div class="modal" id="checkoutModal" aria-hidden="true">
+  <div class="modal-card">
+    <h2>অর্ডার সম্পন্ন করুন</h2>
+    <p class="sub">ডেলিভারির জন্য আপনার তথ্য দিন।</p>
+    <form id="checkoutForm">
+      <div class="field">
+        <label for="custName">পুরো নাম</label>
+        <input id="custName" type="text" required placeholder="যেমন: রাকিব হাসান">
+      </div>
+      <div class="field">
+        <label for="custPhone">মোবাইল নম্বর</label>
+        <input id="custPhone" type="tel" required pattern="^01[0-9]{9}$" placeholder="01XXXXXXXXX">
+      </div>
+      <div class="field">
+        <label for="custAddress">ডেলিভারি ঠিকানা</label>
+        <textarea id="custAddress" rows="3" required placeholder="বাসা/রোড, এলাকা, জেলা"></textarea>
+      </div>
+      <div class="field">
+        <label>পেমেন্ট পদ্ধতি</label>
+        <div class="pay-options">
+          <label><input type="radio" name="pay" value="cod" checked> ক্যাশ অন ডেলিভারি</label>
+          <label><input type="radio" name="pay" value="bkash"> বিকাশ</label>
+          <label><input type="radio" name="pay" value="nagad"> নগদ</label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" data-close-checkout>বাতিল</button>
+        <button type="submit" class="btn-primary">অর্ডার নিশ্চিত করুন</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== সফল অর্ডার মোডাল ===================== -->
+<div class="modal" id="successModal" aria-hidden="true">
+  <div class="modal-card success-box">
+    <div class="tick">✓</div>
+    <h2>ধন্যবাদ, <span id="successName"></span>!</h2>
+    <p class="sub">আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে।</p>
+    <p><strong>অর্ডার আইডি:</strong> <span id="successOrderId"></span><br>
+       <strong>সর্বমোট:</strong> <span id="successTotal"></span></p>
+    <button class="btn-primary" data-close-success style="width:100%;margin-top:10px;">ঠিক আছে</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===================== ফুটার ===================== -->
+<footer class="site-footer" id="footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Smart Shopping Centre</h3>
+      <p>সততাই ব্যবসার আসল মূলধন — আমরা বিশ্বাস করি ভালো পণ্য আর সৎ ব্যবহারেই তৈরি হয় দীর্ঘমেয়াদী সম্পর্ক।</p>
+    </div>
+    <div>
+      <h3>দ্রুত লিংক</h3>
+      <ul>
+        <li><a href="#hero">হোম</a></li>
+        <li><a href="#products">প্রোডাক্ট</a></li>
+        <li><a href="#footer">যোগাযোগ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>যোগাযোগ</h3>
+      <ul>
+        <li>ফোন: 01XXXXXXXXX</li>
+        <li>ইমেইল: hello@smartshoppingcentre.example</li>
+        <li>ঢাকা, বাংলাদেশ</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Smart Shopping Centre। সর্বস্বত্ব সংরক্ষিত।</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
